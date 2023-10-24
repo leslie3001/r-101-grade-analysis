@@ -28,5 +28,9 @@ grades |> summarise(
   knitr::kable()
 ```
 
+```{r}
+missing <- grades |> filter(is.na(Exam)) |> nrow()
+```
+`r missing` students did not take the final exam. 
 
 

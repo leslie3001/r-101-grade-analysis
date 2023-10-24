@@ -14,10 +14,12 @@ library(dplyr)
 library(tidyr)
 here::i_am("grade_analysis.qmd")
 ```
+## Question 1
 ```{r}
 #| message: false
 grades <- vroom(here("grades.csv"))
 ```
+## Question 2
 ```{r}
 grades |> summarise(
   min_exam=min(Exam, na.rm=TRUE),
@@ -27,12 +29,13 @@ grades |> summarise(
 ) |>
   knitr::kable()
 ```
-
+## Question 3
 ```{r}
 missing <- grades |> filter(is.na(Exam)) |> nrow()
 ```
 `r missing` students did not take the final exam. 
 
+## Question 4
 ```{r}
 grades |> filter(Exam!="NA")|>
   ggplot(aes(x=Exam))+ 
@@ -42,10 +45,18 @@ grades |> filter(Exam!="NA")|>
 ```
 This graph shows the repartition of grades at the Exam. 
 
+## Question 5
 ```{r}
 grades |> group_by(Group)|> summarise(number_group=n())|>
   knitr::kable()
 ```
+
+## Question 6
+```{r}
+grades |> group_by(Group) |> 
+  ggplot(aes(y=Group)) + geom_bar()
+```
+This graph gives the repartition of students in each group.
 
 
 

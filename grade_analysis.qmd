@@ -6,6 +6,7 @@ format: html
 https://github.com/leslie3001/r-101-grade-analysis.git 
 
 ```{r}
+#| message: false
 library(here)
 library(vroom)
 library(ggplot2)
@@ -14,7 +15,18 @@ library(tidyr)
 here::i_am("grade_analysis.qmd")
 ```
 ```{r}
+#| message: false
 grades <- vroom(here("grades.csv"))
 ```
+```{r}
+grades |> summarise(
+  min_exam=min(Exam, na.rm=TRUE),
+  max_exam=max(Exam, na.rm=TRUE),
+  med_exam=median(Exam, na.rm=TRUE),
+  mean_exam=mean(Exam, na.rm=TRUE)
+) |>
+  knitr::kable()
+```
+
 
 

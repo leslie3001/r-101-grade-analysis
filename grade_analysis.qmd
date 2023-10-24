@@ -42,5 +42,10 @@ grades |> filter(Exam!="NA")|>
 ```
 This graph shows the repartition of grades at the Exam. 
 
+```{r}
+grades |> group_by(Group)|> summarise(number_group=n())|>
+  knitr::kable()
+```
+
 
 

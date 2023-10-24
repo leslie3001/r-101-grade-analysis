@@ -29,6 +29,7 @@ grades |> summarise(
 ) |>
   knitr::kable()
 ```
+
 ## Question 3
 ```{r}
 missing <- grades |> filter(is.na(Exam)) |> nrow()
@@ -57,6 +58,21 @@ grades |> group_by(Group) |>
   ggplot(aes(y=Group)) + geom_bar()
 ```
 This graph gives the repartition of students in each group.
+
+## Question 7
+```{r}
+grades |> filter(Exam!="NA") |>
+  ggplot(aes(x=Group, y=Exam))+geom_boxplot()+
+  ylab("Grades")
+```
+```{r}
+grades |> filter(Exam!="NA") |>
+  ggplot(aes(x=Group, y=Exam))+geom_violin()+ coord_flip()+
+  ylab("Grades")
+```
+These two graphs shows the grades of each group. 
+
+
 
 
 

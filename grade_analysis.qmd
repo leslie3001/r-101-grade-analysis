@@ -114,5 +114,10 @@ missing_grades2 |> group_by(Id) |> summarise(exam_missed=sum(N==TRUE)) |> ggplot
 ```
 Here is another representation (clearer) of the number of missing grades. Yet, one cannot know how many grades one student in particular is missing. 
 
-
+## Question 13
+```{r}
+group_miss <- grades2 |> group_by(Group) |> filter(name=="Exam") |> reframe(N=is.na(value))
+group_miss |> group_by(Group) |> summarise(N=sum(N==TRUE)) |>
+knitr::kable()
+```
 

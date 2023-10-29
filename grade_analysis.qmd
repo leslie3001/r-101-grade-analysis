@@ -90,7 +90,8 @@ ggplot(aes(y=Group, x=N)) +
 
 ```
 
-
-
-
+## Question 10
+```{r}
+grades2 <- grades |> pivot_longer(cols=3:32, names_to="name", values_to="value")
+```
 

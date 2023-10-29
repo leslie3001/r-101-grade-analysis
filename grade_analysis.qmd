@@ -65,6 +65,7 @@ grades |> filter(Exam!="NA") |>
   ggplot(aes(x=Group, y=Exam))+geom_boxplot()+
   ylab("Grades")
 ```
+
 ```{r}
 grades |> filter(Exam!="NA") |>
   ggplot(aes(x=Group, y=Exam))+geom_violin()+ coord_flip()+
@@ -72,6 +73,12 @@ grades |> filter(Exam!="NA") |>
 ```
 These two graphs shows the grades of each group. 
 
+## Question 8
+```{r}
+missing_grades <- grades |> group_by(Group) |> reframe(missexam=is.na(Exam))
+missing_grades |> group_by(Group) |> summarise(N=sum(missexam==TRUE)) |>
+knitr::kable()
+```
 
 
 

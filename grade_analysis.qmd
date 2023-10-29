@@ -95,3 +95,11 @@ ggplot(aes(y=Group, x=N)) +
 grades2 <- grades |> pivot_longer(cols=3:32, names_to="name", values_to="value")
 ```
 
+## Question 11
+```{r}
+missing_grades2 <- grades2 |> group_by(Id) |> reframe(N=is.na(value))
+missing_grades2 |> group_by(Id) |> summarise(exam_missed=sum(N==TRUE))
+
+```
+
+

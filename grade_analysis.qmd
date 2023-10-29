@@ -80,6 +80,17 @@ missing_grades |> group_by(Group) |> summarise(N=sum(missexam==TRUE)) |>
 knitr::kable()
 ```
 
+## Question 9
+```{r}
+missing_grades |> group_by(Group) |> summarise(N=sum(missexam==TRUE)) |>
+ggplot(aes(y=Group, x=N)) + 
+  geom_col() + 
+  scale_x_continuous(breaks=0:10)+
+  labs(title="Number of students who missed the Exam in each group")
+
+```
+
+
 
 
 

@@ -120,4 +120,15 @@ group_miss <- grades2 |> group_by(Group) |> filter(name=="Exam") |> reframe(N=is
 group_miss |> group_by(Group) |> summarise(N=sum(N==TRUE)) |>
 knitr::kable()
 ```
+## Question 14
+```{r}
+online_grades <- grades[, -c(3:13)]
+online_grades_long <- online_grades |> pivot_longer(cols=3:21, names_to = "Online Exam", values_to = "grades")
+```
+
+```{r}
+miss_online_grades <- online_grades_long |> group_by(Id) |> reframe(nb_miss=is.na(grades))
+miss_online_grades |> group_by(Id) |> summarise(nb=sum(nb_miss==TRUE))
+```
+For each student, one can see how many online tests they missed. 
 

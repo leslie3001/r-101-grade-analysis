@@ -101,5 +101,18 @@ missing_grades2 <- grades2 |> group_by(Id) |> reframe(N=is.na(value))
 missing_grades2 |> group_by(Id) |> summarise(exam_missed=sum(N==TRUE))
 
 ```
+## Question 12
+```{r}
+missing_grades2 |> group_by(Id) |> summarise(exam_missed=sum(N==TRUE)) |> ggplot(aes(x=Id, y=exam_missed))+
+  geom_col()+
+  labs(title="Distribution of the number of missing grades per student")
+```
+```{r}
+missing_grades2 |> group_by(Id) |> summarise(exam_missed=sum(N==TRUE)) |> ggplot(aes(x=exam_missed))+
+  geom_bar()+
+  ylab("the number of students who missed x exams")
+```
+Here is another representation (clearer) of the number of missing grades. Yet, one cannot know how many grades one student in particular is missing. 
+
 
 

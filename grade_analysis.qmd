@@ -152,7 +152,13 @@ grades15 |>
 This scatter plot tries to show the correlation between the Exam grades and the number of missing online tests. 
 
 
-
+## Question 16
+```{r}
+missed_table <- grades |>
+  rowwise() |>
+  mutate(Missed = any(is.na(c_across(starts_with("MCQ_"))))) |>
+  select(Id, Missed)
+```
 
 
 

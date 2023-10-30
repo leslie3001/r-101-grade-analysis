@@ -132,3 +132,4 @@ miss_online_grades |> group_by(Id) |> summarise(nb=sum(nb_miss==TRUE))
 ```
 For each student, one can see how many online tests they missed. 
 
+

@@ -160,5 +160,18 @@ missed_table <- grades |>
   select(Id, Missed)
 ```
 
+## Question 17
+```{r}
+step1 <- grades |> distinct(Id, Group)
+```
 
+
+```{r}
+group_miss_table <- inner_join(step1, missed_table)
+```
+```{r}
+group_miss_table |> group_by(Group) |> summarise(percent=sum(Missed==FALSE)/n()*100) |> 
+  knitr::kable()
+```
+This table gives the proportion of students in each group that misses at least one MCQ test.
 

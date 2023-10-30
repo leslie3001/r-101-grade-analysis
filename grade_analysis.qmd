@@ -132,4 +132,27 @@ miss_online_grades |> group_by(Id) |> summarise(nb=sum(nb_miss==TRUE))
 ```
 For each student, one can see how many online tests they missed. 
 
+## Question 15
+```{r}
+grades15 <- grades |>
+  rowwise() |>
+  mutate(Missing_Online_Grades = sum(is.na(c_across(starts_with("Online_MCQ")))))
+```
+
+```{r}
+grades15 |>
+  ggplot(aes(x = Missing_Online_Grades, y=Exam)) +
+  geom_jitter(alpha=0.5) + 
+  labs(
+    title = "Distribution of Exam Grades by Number conditionned by Missing Online Test Grades",
+    x = "Number of Missing Online Test Grades",
+    y = "Exam Grade"
+  )
+```
+This scatter plot tries to show the correlation between the Exam grades and the number of missing online tests. 
+
+
+
+
+
 

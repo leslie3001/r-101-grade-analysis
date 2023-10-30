@@ -175,3 +175,26 @@ group_miss_table |> group_by(Group) |> summarise(percent=sum(Missed==FALSE)/n()*
 ```
 This table gives the proportion of students in each group that misses at least one MCQ test.
 
+## Question 18
+```{r}
+percent_table <- group_miss_table |> group_by(Group) |> summarise(percent=sum(Missed==FALSE)/n()*100)
+```
+
+```{r}
+mean_grades <- grades |> group_by(Group) |> mutate(mean_exam = mean(Exam, na.rm=TRUE))
+```
+
+
+```{r}
+mean_grades <- mean_grades |> distinct(Group, mean_exam)
+final_merge <- inner_join(percent_table, mean_grades)
+```
+
+```{r}
+final_merge |> ggplot(aes(x=mean_exam, y=percent, color=Group)) +
+  geom_point(size=5)+
+  scale_x_continuous(breaks = 0:20) +
+  xlab("average grade") +
+  ylab("% of students in a group that misses at least 1 grade")
+```
+Average grade at the Exam of each group as a function of the percentage of missed exams. 
